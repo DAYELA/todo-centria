@@ -35,7 +35,7 @@ import '../modules/tasks.css';
 
 	import { ref } from 'vue';
 	import { getAuth } from 'firebase/auth';
-	import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
+	import { collection, getDocs, doc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
 	import { db } from '../main';
 	import router from '../router';
 
@@ -51,14 +51,18 @@ import '../modules/tasks.css';
 		async created() {
 			const auth = getAuth();
 			if (auth.currentUser) {
-				this.currentUser = auth.currentUser;
-				const tasksRef = collection(db, 'tasks');
-				const snapshot = await getDocs(tasksRef);
-				this.tasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-			} else {
-				router.push('/signin');
-			}
-		},
+      this.currentUser = auth.currentUser;
+
+      const tasksRef = collection(db, 'tasks');
+      const querySnapshot = await getDocs(
+        query(tasksRef, where('userId', '==', this.currentUser.uid))
+      );
+
+      this.tasks = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } else {
+      router.push('/signin');
+    }
+  },
 		methods: {
 			createTask() {
         		router.push({ name: 'CreateTask' });
