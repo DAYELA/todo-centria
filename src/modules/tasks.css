@@ -1,0 +1,129 @@
+:root {
+	--borderRadus: 0.25rem;
+	--color: #eee;
+
+	--taskBackgroundColor: #3b4148;
+	--taskHoverBackgroundColor: #434a52;
+
+	--labelBackgroundColor: #363b41;
+
+	--submitBackgroundColor: #ea4c88;
+	--submitColor: #eee;
+	--submitHoverBackgroundColor: #d44179;
+}
+
+
+.task-list-container {
+	padding: 1rem;
+	margin: auto;
+	width: 60%;
+	height: 100%;
+}
+  
+.task-list {
+	margin-bottom: 1rem;
+}
+  
+.task-item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1rem;
+	border-radius: var(--borderRadus);
+	border-bottom-left-radius: var(--borderRadus);
+	border-top-left-radius: var(--borderRadus);
+	background-color: #3b4148;
+	background-color: var(--taskBackgroundColor);
+	color: var(--color);
+	padding: 1rem;
+	height: 4rem;
+}
+
+.task-item-content {
+	display: flex;
+	align-items: center;
+	display: flex;
+	width: 100%;
+}
+  
+.task-item-info {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	padding-right: 1rem;
+	font-size: 18px;
+}
+
+.description {
+	line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.task-item-info > * {
+	margin-right: 1rem;
+	word-wrap: break-word;
+	line-height: 1em;
+	max-height: 1em;
+}
+
+.task-item-info {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	flex: 1;
+  }
+  
+.task-item-actions {
+	position: relative;
+	display: flex;
+	right: 0;
+	align-items: center;
+	height: 100%;
+}
+
+
+.task-item-actions > * {
+	margin-left: 1rem;
+
+}
+
+.task-item-actions button {
+	border: none;
+	border-radius: var(--borderRadus);
+	background-color: var(--submitBackgroundColor);
+	color: var(--color);
+	cursor: pointer;
+	width: 5rem;
+	height: 1.5rem;
+	font-size: 16px ;
+}
+
+.task-item-actions input {
+	border: none;
+	width: 20px;
+	height: 20px;
+}
+
+.task-item-actions button:hover {
+	background-color: var(--submitHoverBackgroundColor);
+}
+
+.create-task {
+	border: none;
+	border-radius: var(--borderRadus);
+	background-color: var(--submitBackgroundColor);
+	color: var(--color);
+	cursor: pointer;
+	width: 8rem;
+	height: 2rem;
+	font-size: 16px ;
+}
+
+.create-task:hover {
+	background-color: var(--submitHoverBackgroundColor);
+}
+  

@@ -1,0 +1,16 @@
+:root {
+	--iconFill: #606468;
+}
+
+.icons {
+	display: none;
+}
+
+.icon {
+	height: 1em;
+	display: inline-block;
+	fill: #606468;
+	fill: var(--iconFill);
+	width: 1em;
+	vertical-align: middle;
+}

@@ -1,0 +1,16 @@
+
+:root {
+	--anchorColor: #eee;
+}
+
+a {
+	color: #eee;
+	color: var(--anchorColor);
+	outline: 0;
+	text-decoration: none;
+}
+
+a:focus,
+a:hover {
+	text-decoration: underline;
+}

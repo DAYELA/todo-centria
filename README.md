@@ -1,4 +1,5 @@
 # todo-centria
+todo app for centria university of applied sciences course
 
 ## Project setup
 ```

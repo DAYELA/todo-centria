@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+	<nav>
+		<router-link to="/tasks" v-if="isLoggedIn"> Tasks </router-link>
+		<div v-else>
+			<router-link to="/signup"> Register </router-link>
+			<router-link to="/signin"> | Login </router-link>
+		</div>
+		<router-link to="/signin" @click="handleSignOut" v-if="isLoggedIn"> | Logout</router-link>
+	</nav>
+	<router-view />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+/* eslint-disable */
+import { onMounted, ref } from 'vue';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './main';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import router from './router';
+
+const isLoggedIn = ref(false);
+
+let auth;
+onMounted(() => {
+	auth = getAuth();
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			isLoggedIn.value = true;
+		} else {
+			isLoggedIn.value = false;
+		}
+	});
+});
+
+const handleSignOut = () => {
+	signOut(auth).then(() => {
+		router.push('/signin');
+	});
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
